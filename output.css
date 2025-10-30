@@ -23,6 +23,8 @@
     --spacing: 0.25rem;
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
+    --text-xl: 1.25rem;
+    --text-xl--line-height: calc(1.75 / 1.25);
     --text-3xl: 1.875rem;
     --text-3xl--line-height: calc(2.25 / 1.875);
     --font-weight-bold: 700;
@@ -232,8 +234,8 @@
   .h-fit {
     height: fit-content;
   }
-  .min-h-96 {
-    min-height: calc(var(--spacing) * 96);
+  .min-h-25 {
+    min-height: calc(var(--spacing) * 25);
   }
   .min-h-screen {
     min-height: 100vh;
@@ -336,6 +338,10 @@
   .text-sm {
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+  .text-xl {
+    font-size: var(--text-xl);
+    line-height: var(--tw-leading, var(--text-xl--line-height));
   }
   .font-bold {
     --tw-font-weight: var(--font-weight-bold);

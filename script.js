@@ -57,46 +57,46 @@ let A = [
 let question_count = 1;
 let score = 0;
 
-function Navigation(){
+function Navigation() {
 
-    let next_btn = document.getElementById("next_btn");
-    let prev_btn = document.getElementById("prev");
-    let props = document.querySelectorAll(".prop");
+  let next_btn = document.getElementById("next_btn");
+  let prev_btn = document.getElementById("prev");
+  let props = document.querySelectorAll(".prop");
 
 
-    // if(question_count == 9){
-    //     next_btn.setAttribute("disabled" , "true")
-    //     next_btn.style.backgroundColor = "#9FB8B7"
-    // }
+  // if(question_count == 9){
+  //     next_btn.setAttribute("disabled" , "true")
+  //     next_btn.style.backgroundColor = "#9FB8B7"
+  // }
 
-    
-    // props.forEach( p =>{
-    //     if(p.style.backgroundColor == "green"){
-    //        CheckAnswer(p.textContent) ;
-    //     }    
-    // })
 
-    prev_btn.disabled = false
-    prev_btn.style.backgroundColor = "oklch(62.3% 0.214 259.815)"
+  // props.forEach( p =>{
+  //     if(p.style.backgroundColor == "green"){
+  //        CheckAnswer(p.textContent) ;
+  //     }    
+  // })
 
-    question_count++;
-    
+  prev_btn.disabled = false
+  prev_btn.style.backgroundColor = "oklch(62.3% 0.214 259.815)"
 
-    
-    Question_change();
-    StyleRemover();
+  question_count++;
 
-    console.table(A)
-    
-    
-    
+
+
+  Question_change();
+  StyleRemover();
+
+  console.table(A)
+
+
+
 }
 
-function ShowQuiz(){
+function ShowQuiz() {
 
-  showResult()
+  
 
-    let code = `
+  let code = `
             <div class="container flex justify-between ">
                 <h1 class="text-cyan-400 " id="count">1 / 10</h1>
                 
@@ -137,83 +137,83 @@ function ShowQuiz(){
         </div>
     `
 
-    document.getElementById("begin_btn").hidden = 'true';
-    document.getElementById("container_div").innerHTML += code ;
+  document.getElementById("begin_btn").hidden = 'true';
+  document.getElementById("container_div").innerHTML += code;
 
 
-      let props = document.querySelectorAll(".prop");
-      let next_btn = document.getElementById("next_btn");
-   // console.log(props)
-    props.forEach( p =>{
-        p.addEventListener('click', function(){
-            
-              
-            p.style.backgroundColor = "green";
-            p.style.transform = "scale(1.1)" ;
-            A[question_count-1].userAnswer = p.textContent;
+  let props = document.querySelectorAll(".prop");
+  let next_btn = document.getElementById("next_btn");
+  // console.log(props)
+  props.forEach(p => {
+    p.addEventListener('click', function () {
 
-            next_btn.disabled = false
-            next_btn.style.backgroundColor = "oklch(62.3% 0.214 259.815)"
-            StyleRemover()
 
-        })
+      p.style.backgroundColor = "green";
+      p.style.transform = "scale(1.1)";
+      A[question_count - 1].userAnswer = p.textContent;
+
+      next_btn.disabled = false
+      next_btn.style.backgroundColor = "oklch(62.3% 0.214 259.815)"
+      StyleRemover()
+
     })
-       
+  })
+
 
 }
 
 
-function Question_change(){
-    console.log(question_count)
-    let next_btn = document.getElementById("next_btn");
-    let question_title = document.getElementById("ques_title");
-    let count = document.getElementById("count");
-    let props = document.querySelectorAll(".prop")
-
-    
-    question_title.innerText = A[question_count-1].question;
-    
-
-    props.forEach((p,i)=>{
-        p.innerText = A[question_count-1].props[i]
-    })
+function Question_change() {
+  console.log(question_count)
+  let next_btn = document.getElementById("next_btn");
+  let question_title = document.getElementById("ques_title");
+  let count = document.getElementById("count");
+  let props = document.querySelectorAll(".prop")
 
 
-    count.innerHTML = `${question_count} / 10`;
-    
-    
+  question_title.innerText = A[question_count - 1].question;
 
-    if (question_count==10){
-      next_btn.style.backgroundColor = "green"
-      next_btn.innerText = 'show results';
-      next_btn.onclick = showResult;
-      
-    }
-    else{
-      next_btn.innerText = 'next';
-      next_btn.onclick = Navigation;
-    }
 
-    
-    
-        next_btn.setAttribute("disabled" , "true")
-        next_btn.style.backgroundColor = "#9FB8B7"
+  props.forEach((p, i) => {
+    p.innerText = A[question_count - 1].props[i]
+  })
 
-        
+
+  count.innerHTML = `${question_count} / 10`;
+
+
+
+  if (question_count == 10) {
+    next_btn.style.backgroundColor = "green"
+    next_btn.innerText = 'show results';
+    next_btn.onclick = showResult;
+
+  }
+  else {
+    next_btn.innerText = 'next';
+    next_btn.onclick = Navigation;
+  }
+
+
+
+  next_btn.setAttribute("disabled", "true")
+  next_btn.style.backgroundColor = "#9FB8B7"
+
+
 
 }
 
-function StyleRemover(){
+function StyleRemover() {
 
 
-    let props = document.querySelectorAll(".prop");
-    
-    props.forEach( p =>{
-            p.style.backgroundColor = "#104e64";
-            p.style.transform = "scale(1)" ;
-    })
+  let props = document.querySelectorAll(".prop");
 
-    checkIfAlreadyAnswered(props)
+  props.forEach(p => {
+    p.style.backgroundColor = "#104e64";
+    p.style.transform = "scale(1)";
+  })
+
+  checkIfAlreadyAnswered(props)
 }
 
 
@@ -222,48 +222,69 @@ function StyleRemover(){
 
 
 
-function PreviousQuestion(){
-    let prev_btn = document.querySelector("#prev")
-    let next_btn = document.getElementById("next_btn");
-    let props = document.querySelectorAll(".prop");
+function PreviousQuestion() {
+  let prev_btn = document.querySelector("#prev")
+  let next_btn = document.getElementById("next_btn");
+  let props = document.querySelectorAll(".prop");
 
-    question_count--
-    if(question_count == 1){
-        prev_btn.setAttribute("disabled" , "true")
-        prev_btn.style.backgroundColor = "#9FB8B7"
-    }
+  question_count--
+  if (question_count == 1) {
+    prev_btn.setAttribute("disabled", "true")
+    prev_btn.style.backgroundColor = "#9FB8B7"
+  }
 
-    
-    
-    Question_change()
-    StyleRemover()
 
-    
+
+  Question_change()
+  StyleRemover()
+
+
 }
 
 
-function showResult(){
-    let result_div = document.getElementById("result_div");
-    let container_div = document.getElementById("container_div");
-    let score_title = document.getElementById("score_title");
-    let score_number = 0
-    result_div.hidden = false;
-    container_div.hidden = true
+function showResult() {
+  let result_div = document.getElementById("result_div");
+  let container_div = document.getElementById("container_div");
+  let score_title = document.getElementById("score_title");
+  let correction = document.getElementById("correction");
+  let score_number = 0
+  result_div.hidden = false;
+  container_div.hidden = true
 
-    // score calculation
+  // score calculation
 
-    A.map((a)=>{
-       score_number+= (a.answer == a.userAnswer) ? 100 : 0
-    })
+  A.map((a) => {
+    score_number += (a.answer == a.userAnswer) ? 100 : 0
+  })
 
-    score_title.textContent = score_number
 
-    
 
-    A.forEach((a) =>{
-      if ( a.answer !== a.userAnswer ) {
+  if (score_number == 1000) {
+    score_title.textContent = `Your score is ${score_number}. You are amazing 🤩`;
+    score_title.style.color = "#00ff00"; 
+    correction.textContent = ""
+  }
+  else if (score_number >= 500 && score_number < 1000) {
+    score_title.textContent = `Your score is ${score_number}. You are close to the goal 🙌`;
+    score_title.style.color = "#32cd32"; 
+  }
+  else if (score_number >= 200 && score_number < 500) {
+    score_title.textContent = `Your score is ${score_number}. Keep it up 💪`;
+    score_title.style.color = "#ffd700"; 
+  }
+  else {
+    score_title.textContent = `Your score is ${score_number}. You can do better! 🚀`;
+    score_title.style.color = "#ff4500"; 
+  }
 
-        const res = `
+
+
+
+
+  A.forEach((a) => {
+    if (a.answer !== a.userAnswer) {
+
+      const res = `
         <div>
           <h1 class="text-white" >${a.question}</h1>
 
@@ -301,25 +322,25 @@ function showResult(){
         </div>
         
         `
-        result_div.innerHTML += res
-      }
-    })
+      result_div.innerHTML += res
+    }
+  })
 
-} 
+}
 
 
-function checkIfAlreadyAnswered(props){
+function checkIfAlreadyAnswered(props) {
   props.forEach(p => {
-      console.log(p.textContent + '______' + A[question_count-1].userAnswer);
-      
-      if(p.textContent == A[question_count-1].userAnswer){
-            p.style.backgroundColor = "green";
-            p.style.transform = "scale(1.1)" ;
+    console.log(p.textContent + '______' + A[question_count - 1].userAnswer);
 
-            next_btn.disabled = false
-    next_btn.style.backgroundColor = "oklch(62.3% 0.214 259.815)"
-      }
-    })
+    if (p.textContent == A[question_count - 1].userAnswer) {
+      p.style.backgroundColor = "green";
+      p.style.transform = "scale(1.1)";
 
-    
+      next_btn.disabled = false
+      next_btn.style.backgroundColor = "oklch(62.3% 0.214 259.815)"
+    }
+  })
+
+
 }
